@@ -64,6 +64,7 @@ tcpdump -nnX -c 5 -s 0 -i enp2s0 'tcp port !22 and (((ip[2:2] - ((ip[0]&0xf)<<2)
 mysql -h127.0.0.1 -P33061 -uucenter_writer -pE3KyHk7NCkE2j2
 mysql -h127.0.0.1 -P33061 -uplan_writer -pnhayG6cg28F2fL
 mysql -h127.0.0.1 -P33061 -ucms_writer -ppUmf4a7rg8FZ4P
+mysql -h127.0.0.1 -P33061 -uspread_writer -pHb8WhdfN93Z6TY
 ```
 
 ```sql
