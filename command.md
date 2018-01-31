@@ -43,7 +43,7 @@ ssh root@69.171.68.132 -p 26718
 
 # scp
 ```bash
-scp -P 30218 ~/Downloads/html.zip gaodongchen@127.0.0.1:/tmp;\
+scp -P 30218 /tmp/html.zip gaodongchen@127.0.0.1:/tmp
 scp ~/Downloads/html.zip gaodongchen@192.168.2.104:/tmp
 ```
 
@@ -110,5 +110,5 @@ micro query pipi.micro.wechat.robot Robot.Send '{\
 # ss-local
 ```
 # vps
-ss-local -s 69.171.68.132 -p 443 -l 1080 -m aes-256-cfb -k U2FsdGVkX1/K9S2ZJTP7BCYDD/UEdiAWoEL2wag7sKo=
+ss-local -s 69.171.68.132 -p 443 -l 1080 -m aes-256-cfb -k U2FsdGVkX18jtxG+KjbG1TrZc7YWzY82j64T71LQcmE=
 ```
