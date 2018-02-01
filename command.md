@@ -14,6 +14,8 @@ ssh -NCf  -p 2231 gaodongchen@39.107.67.111 \
 -L30218:192.168.30.218:22 -L30808:192.168.80.8:22 -L30217:192.168.30.217:22 \
 -L60195:192.168.60.195:22 -L10112:192.168.10.112:22
 
+ssh -NCf -L 37060:192.168.1.13:3306 -L 37061:192.168.1.29:3306 -L 37062:192.168.1.15:3306 gaodongchen@123.56.17.248
+
 # mysql
 ssh -NCf -L33061:192.168.10.116:3306 -p 10112 gaodongchen@127.0.0.1
 # redis
@@ -65,6 +67,10 @@ mysql -h127.0.0.1 -P33061 -uucenter_writer -pE3KyHk7NCkE2j2
 mysql -h127.0.0.1 -P33061 -uplan_writer -pnhayG6cg28F2fL
 mysql -h127.0.0.1 -P33061 -ucms_writer -ppUmf4a7rg8FZ4P
 mysql -h127.0.0.1 -P33061 -uspread_writer -pHb8WhdfN93Z6TY
+
+mysql -h127.0.0.1 -P37060 -upipi_core_writer -pFx8UKriHK4k
+mysql -h127.0.0.1 -P37061 -ucard_writer -pFx8UKriHK4k
+mysql -h127.0.0.1 -P37062 -umall_writer -pFx8UKriHK4k
 ```
 
 ```sql
