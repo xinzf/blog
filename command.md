@@ -49,6 +49,7 @@ ssh root@69.171.68.132 -p 26718
 ```bash
 scp -P 30218 /tmp/html.zip gaodongchen@127.0.0.1:/tmp
 scp ~/Downloads/html.zip gaodongchen@192.168.2.104:/tmp
+scp -P 30218 www@127.0.0.1:/tmp/abc.zip /tmp/
 ```
 
 # tcpdump
