@@ -1,5 +1,6 @@
 # curl
 ```bash
+# 用户token生成
 curl -v service.intranet.pipifit.com/ucenter/token -d 'uid=32'
 
 # 语意分析接口
@@ -120,4 +121,15 @@ micro query pipi.micro.wechat.robot Robot.Send '{\
 ```
 # vps
 ss-local -s 69.171.68.132 -p 443 -l 1080 -m aes-256-cfb -k U2FsdGVkX18jtxG+KjbG1TrZc7YWzY82j64T71LQcmE=
+```
+# awk
+```
+# base syntax
+awk '{pattern + action}' {filenames}
+
+# Poe 33794712
+echo "I am Poe,my qq is 33794712"|awk -F '[ ,]+' '{print $3" "$7}'
+
+# user count is  62
+awk '{count++;print $0;} END{print "user count is ",count}' /etc/passwd
 ```
