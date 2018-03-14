@@ -14,16 +14,6 @@ curl "$WXROBOT_HTTP_SERVER/rpc" -H "Content-Type: application/json" \
 ssh -NCf  -p 2231 gaodongchen@39.107.67.111 \
 -L30218:192.168.30.218:22 -L30808:192.168.80.8:22 -L30217:192.168.30.217:22 \
 -L60195:192.168.60.195:22 -L10112:192.168.10.112:22
-
-ssh -NCf -L 37060:192.168.1.13:3306 \
--L 37061:192.168.1.29:3306 \
--L 37062:192.168.1.15:3306 gaodongchen@123.56.17.248
-
-# mysql
-ssh -NCf -L33061:192.168.10.116:3306 -p 10112 gaodongchen@127.0.0.1
-# redis
-ssh -NCf -L63791:192.168.10.113:6379 -p 10112 gaodongchen@127.0.0.1
-
 # micro
 ssh gaodongchen@127.0.0.1 -p 10112
 # api
@@ -35,10 +25,50 @@ ssh gaodongchen@127.0.0.1 -p 60195
 # admin
 ssh gaodongchen@127.0.0.1 -p 30808
 
+# mysql
+ssh -NCf -L33061:192.168.10.116:3306 -p 10112 gaodongchen@127.0.0.1
+# redis
+ssh -NCf -L63791:192.168.10.113:6379 -p 10112 gaodongchen@127.0.0.1
+
+# old jump
+ssh -NCf gaodongchen@123.56.17.248 \
+-L10125:192.168.1.25:22 -L12151:192.168.2.151:22 \
+-L10107:192.168.1.7:22 -L12150:192.168.2.150:22 \
+-L10118:192.168.1.18:22 -L10122:192.168.1.22:22 \
+-L10110:192.168.1.10:22 -L12153:192.168.2.153:22 \
+-L10117:192.168.1.17:22 -L10119:192.168.1.19:22 -L10120:192.168.1.20:22 \
+-L10102:192.168.1.2:22 -L10121:192.168.1.21:22 -L12152:192.168.2.152:22
+
+# frontend
+ssh root@127.0.0.1 -p 10125
+ssh root@127.0.0.1 -p 12151
+# backend
+ssh root@127.0.0.1 -p 10107 X
+ssh root@127.0.0.1 -p 12150
+# kafka
+ssh root@127.0.0.1 -p 10117
+ssh root@127.0.0.1 -p 10119
+ssh root@127.0.0.1 -p 10120
+# im
+ssh root@127.0.0.1 -p 10110
+ssh root@127.0.0.1 -p 12153
+# es
+ssh root@127.0.0.1 -p 10118
+ssh root@127.0.0.1 -p 10122
+# web
+ssh root@127.0.0.1 -p 10102
+# push
+ssh root@127.0.0.1 -p 12152
+# log
+ssh root@127.0.0.1 -p 10121
+
+# 旧数据库
+ssh -NCf -L 37060:192.168.1.13:3306 -L 37061:192.168.1.29:3306 -L 37062:192.168.1.15:3306 \
+gaodongchen@123.56.17.248
+
 # 104
 ssh gaodongchen@39.107.97.26 -p 37616
-# old jump
-ssh gaodongchen@123.56.17.248
+
 # ngrok
 ssh gaodongchen@39.107.97.26
 
@@ -132,4 +162,9 @@ echo "I am Poe,my qq is 33794712"|awk -F '[ ,]+' '{print $3" "$7}'
 
 # user count is  62
 awk '{count++;print $0;} END{print "user count is ",count}' /etc/passwd
+```
+
+# mount
+```
+mount /dev/mapper/xo-home /volumes/home
 ```
