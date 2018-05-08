@@ -1,0 +1,34 @@
+[user]
+	email = gaodongchen@qq.com
+	name = 高东臣
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+	editor = vim
+    excludesfile = ~/.gitignore
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+    df = difftool
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+[push]
+	default = simple
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
