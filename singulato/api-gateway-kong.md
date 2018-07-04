@@ -76,6 +76,18 @@ $ curl -i -X POST \
 ```
 API Request
 ```bash
+curl -i -X GET \
+    --url 'http://localhost:8000/mall/car/app/cards' \
+    --header 'Host: apis.pre.singulato.com' \
+    --header "Authorization: feb7e44a3bbf30e84406e61730fc3383"
+```
+or
+```bash
+curl -i -X GET \
+    --url 'http://apis.pre.singulato.com/mall/car/app/cards' \
+    --header "Authorization: feb7e44a3bbf30e84406e61730fc3383"
+```
+```bash
 $ curl -X GET \
     --url "http://127.0.0.1:8012/api/mall/car/app/recommendations" \
     --header "Host: crmplus.api.local.singulato.com" \
