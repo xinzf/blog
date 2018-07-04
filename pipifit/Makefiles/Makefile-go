@@ -1,0 +1,38 @@
+version = ${BUILD_NUMBER}
+name = ${JOB_NAME}
+cluster = ${CLUSTER}
+
+
+.PHONY: build
+build:
+	mkdir ${GOSRC}/pipifit/$(name)/build -p;
+	cd ${GOSRC}/pipifit/$(name) && glide install && CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -ldflags '-w' -i -o ${GOSRC}/pipifit/$(name)/build/$(version)
+
+deploy:
+ifeq ($(cluster), dev)
+	cd ${GOSRC}/pipifit/$(name) && make -f ${JENKINS_HOME}/build-makefiles/golang beta
+else
+ifeq (${BUILD_USER_ID}, admin)
+	cd ${GOSRC}/pipifit/$(name) && make -f ${JENKINS_HOME}/build-makefiles/golang stable
+else
+	echo "你没有权限"
+	exit 254
+endif
+endif
+
+beta:
+	mkdir ${GO_PROJECT_ROOT}/$(name)/current -p && mkdir ${GO_PROJECT_ROOT}/$(name)/releases -p;
+	cp ${GOSRC}/pipifit/$(name)/build/${BUILD_NUMBER} ${GO_PROJECT_ROOT}/$(name)/releases/;
+	rm -rf ${GO_PROJECT_ROOT}/$(name)/current/$(name);
+	ln -s ${GO_PROJECT_ROOT}/$(name)/releases/${BUILD_NUMBER} ${GO_PROJECT_ROOT}/$(name)/current/$(name);
+	supervisorctl -c ~/.supervisor/supervisor.ini restart $(name)
+
+stable:
+ifeq ($(cluster), micro)
+	for i in micro1-go; do \
+		ssh -t $$i 'mkdir /var/go_projects/$(name)/current -p && mkdir /var/go_projects/$(name)/releases -p' && \
+		scp ${GOSRC}/pipifit/$(name)/build/${BUILD_NUMBER} $$i:/var/go_projects/$(name)/releases/ && \
+		ssh -t $$i 'rm -rf /var/go_projects/$(name)/current/$(name) && ln -s /var/go_projects/$(name)/releases/$(version) /var/go_projects/$(name)/current/$(name)'  && \
+		ssh -t $$i 'supervisorctl -c ~/.supervisor/supervisor.ini restart $(name)'; \
+	done
+endif

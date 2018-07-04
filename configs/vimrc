@@ -1,0 +1,92 @@
+set nu
+set nobk
+set ai
+set ar
+set si
+set is
+set hls
+set wildmenu
+set showcmd
+set expandtab
+set cul
+set cuc
+set shortmess=atI
+set go=
+set ts=4
+set sw=4
+set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)  
+set fencs=utf-8,gbk
+"set dir=~/.vim/swp
+set completeopt=preview,menu 
+set fdm=manual
+
+au FileType php setlocal dict+=~/.vim/dict/php_funclist.dict
+au FileType css setlocal dict+=~/.vim/dict/css.dict
+au FileType c setlocal dict+=~/.vim/dict/c.dict
+"au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
+"au FileType scale setlocal dict+=~/.vim/dict/scale.dict
+au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
+au FileType html setlocal dict+=~/.vim/dict/javascript.dict
+au FileType html setlocal dict+=~/.vim/dict/css.dict
+
+" set new file extension.
+au BufNewFile,BufRead *.phtml set ft=html
+au BufNewFile,BufRead *.md set ft=markdown
+au BufNewFile,BufRead *.md set nonu
+
+execute pathogen#infect()
+syntax on
+filetype indent plugin on
+
+""
+" 插件
+""
+
+" vim-buffergator
+" 显示方式设置
+let g:buffergator_viewport_split_policy="b" 
+
+" taglist
+" 显示方式设置
+let Tlist_Use_Right_Window=1
+
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_json_frontmatter = 1
+
+" NERDTree
+" 当打开vim且没有文件时自动打开NERDTree
+"autocmd vimenter * if !argc() | NERDTree | endif
+" 只剩 NERDTree时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" 如果出现小方块打开这个选项
+"let NERDTreeDirArrows = 0
+
+" neocomplete
+if (has("lua")) 
+    let g:neocomplete#enable_at_startup = 1
+end
+
+" supertab
+let g:SuperTabClosePreviewOnPopupClose = 1
+
+" ctrlp
+let g:ctrlp_custom_ignore = {"dir":"vendor"}
+
+" 指定go源文件路径
+if exists($GOPATH) 
+    au FileType go setlocal path+=$GOPATH/src
+else
+    au FileType go setlocal path+=$HOME/go/src
+end
+
+
+" Godef
+let g:godef_split=0
+let g:godef_same_file_in_same_window=1
+
+" golint
+" 保存文件即执行一次这个方法（很烦）
+" autocmd BufWritePost,FileWritePost *.go execute 'Lint' | cwindow
+
+colorscheme monokai

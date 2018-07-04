@@ -74,6 +74,16 @@ $ curl -i -X POST \
     --data 'methods=GET' \
     --data 'upstream_url=http://app.pre.singulato.com/sku/center/v1/app/cards'
 ```
+API Request
+```bash
+$ curl -X GET \
+    --url "http://127.0.0.1:8012/api/mall/car/app/recommendations" \
+    --header "Host: crmplus.api.local.singulato.com" \
+    --header "Authorization: feb7e44a3bbf30e84406e61730fc3383" \
+    --data "pageNo=1" \
+    --data "pageSize=10" \
+    --data "number=95acb9c1664142a7b2c4c5de6a68b999"
+```
 # Bugs
 
 ## Kong
