@@ -1,7 +1,13 @@
 # Virtual Box
 The command is set intnet in Virtual Box.
 ```cmd
-VBoxManage.exe dhcpserver add --netname intnet --ip 192.168.1.1 --netmask 255.255.255.0 --lowerip 192.168.1.100 --upperip 192.168.1.200 --enable
+> VBoxManage.exe dhcpserver add ^
+    --netname intnet ^
+    --ip 192.168.1.1 ^
+    --netmask 255.255.255.0 ^
+    --lowerip 192.168.1.100 ^
+    --upperip 192.168.1.200 ^
+    --enable
 ```
 # Kong
 ## Installation
